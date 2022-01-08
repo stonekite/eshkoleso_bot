@@ -12,16 +12,16 @@ def get_menu(user_id: int) -> ReplyKeyboardMarkup:
     data = get_user_data(user_id)
     keyboard = []
 
-    def add_row(*actions):
+    def add_row(*actions: list[Actions]):
         if actions:
             row = [KeyboardButton(text=t(action, user_id)) for action in actions]
             keyboard.append(row)
 
-    if not data.get("meds", None):
+    if not data.meds:
         add_row(Actions.ADD_MEDS)
         return ReplyKeyboardMarkup(keyboard=keyboard)
 
-    if data.get("interval_reminders", {}).get("last_start_date", None) == date.today():
+    if data.interval_reminders and data.last_start_date < date.today():
         add_row(Actions.START_INTERVAL_REMINDERS)
 
     add_row(Actions.SHOW_MEDS)

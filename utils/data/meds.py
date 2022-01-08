@@ -1,39 +1,47 @@
+from utils.helpers.misc import is_archived
 from .client import client
-from .user_data import get_user_data
+from bson.objectid import ObjectId
 
 
-def get_meds(user_id: int) -> list[str]:
-    return get_user_data(user_id).get("meds", [])
+class Med():
+    def __init__(self, med: dict):
+        med = med if med else {}
+
+        self._id: ObjectId = med.get("_id", None)
+        self.name: str = med.get("name", "")
+        self.is_archived: bool = med.get("is_archived", False)
 
 
-def add_meds(user_id: int, name: str) -> str:
+def get_meds(user_id: int) -> list[Med]:
+    meds = client.find_one({
+        "_id": user_id
+    }, {
+        "_id": 0,
+        "meds": 1
+    }).get(
+        "meds",
+        []
+    )
+
+    return [Med(med) for med in meds if not is_archived(med)]
+
+
+def add_meds(user_id: int, med: Med):
+    med["_id"] = ObjectId()
     client.update_one({
         "_id": user_id,
     }, {
         "$push": {
-            "meds": dict({
-                "name": name
-            })
+            "meds": med
         }
     })
 
 
-def remove_meds(user_id: int, index: int) -> str:
+def remove_meds(meds_id: ObjectId):
     client.update_one({
-        "_id": user_id,
+        "meds._id": meds_id,
     }, {
         "$set": {
-            f"meds.{index}": {
-                "name": "REMOVE"
-            }
-        }
-    })
-    client.update_one({
-        "_id": user_id
-    }, {
-        "$pull": {
-            "meds": {
-                "name": "REMOVE"
-            }
+            "meds.$.is_archived": True
         }
     })

@@ -1,4 +1,3 @@
-import itertools
 from typing import Union
 from .data.user_data import get_language
 from .actions import Actions, action_messages
@@ -7,28 +6,37 @@ from .actions import Actions, action_messages
 translations = dict({
     "ru": dict({
         "Welcome!": "Добро пожаловать!",
-        "Done!": "Готово!",
+        "Your meds:": "Ваши препараты:",
+        "You have no meds right now.": "Сейчас у вас нет препаратов.",
+        "Your timed reminders:": "Ваши напоминания по времени:",
+        "You have no timed reminders right now.": "Сейчас у вас нет напоминаний по времени",
+        "Your interval reminders:": "Ваши напоминания с интервалом:",
+        "You have no interval reminders right now.": "Сейчас у вас нет напоминаний с интервалом.",
+        "times": "раза",
+        "every": "каждые",
+        "hours": "ч.",
 
-        "My meds": "Мои препараты",
-        "Add meds": "Добавить препарат",
-        "Remove meds": "Удалить препарат",
-        "Please enter the name of the meds.": "Пожалуйста, введите название препарата.",
-        "Please select the meds you want to remove.": "Пожалуйста, выберите препарат, который вы хотите удалить.",
+        action_messages[Actions.SHOW_MEDS]: "💊 Мои препараты",
+        action_messages[Actions.ADD_MEDS]: "➕ Добавить препарат",
+        action_messages[Actions.ADD_MEDS_SET_NAME]: "Пожалуйста, введите название препарата.",
+        action_messages[Actions.REMOVE_MEDS]: "❌ Удалить препарат",
+        action_messages[Actions.REMOVE_MEDS_SET_ID]: "Пожалуйста, выберите препарат, который вы хотите удалить.",
 
-        "My journal": "Моя анкета",
-        "Add question": "Добавить вопрос",
-        "Remove question": "Удалить вопрос",
-        "Add answer": "Добавить ответ",
+        action_messages[Actions.SHOW_JOURNAL_QUESTIONS]: "📖 Моя анкета",
+        action_messages[Actions.ADD_JOURNAL_QUESTION]: "➕ Добавить вопрос",
+        action_messages[Actions.REMOVE_JOURNAL_QUESTION]: "❌ Удалить вопрос",
+        action_messages[Actions.ADD_JOURNAL_RESPONSE]: "Добавить ответ",
 
-        "My timed reminders": "Мои напоминания по времени",
-        "Add reminder": "Добавить напоминание",
-        "Remove reminder": "Удалить напоминание",
+        action_messages[Actions.SHOW_REMINDERS]: "⏰ Мои напоминания по времени",
+        action_messages[Actions.ADD_REMINDER]: "➕ Добавить напоминание",
+        action_messages[Actions.REMOVE_REMINDER]: "❌ Удалить напоминание",
 
-        "My interval reminders": "Мои напоминания с интервалом",
-        "Start interval reminders": "Начать напоминания с интервалом",
+        action_messages[Actions.SHOW_INTERVAL_REMINDERS]: "⏰ Мои напоминания с интервалом",
+        action_messages[Actions.START_INTERVAL_REMINDERS]: "⏲️ Начать напоминания с интервалом",
 
-        "Sorry, something went wrong.": "Извините, что-то пошло не так.",
-        "Sorry, I didn't get that.": "Извините, я не понял."
+        action_messages[Actions.DONE]: "Готово! ✔️",
+        action_messages[Actions.ERROR]: "Извините, что-то пошло не так.",
+        action_messages[Actions.USER_ERROR]: "Извините, я не понял."
     })
 })
 
