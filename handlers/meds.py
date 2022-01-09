@@ -14,14 +14,12 @@ def show_meds(update: Update, context: CallbackContext):
 
     text = ""
     keyboard = [
-        [
-            InlineKeyboardButton(
-                text=t(Actions.ADD_MEDS, user_id),
-                callback_data=json.dumps({
-                    "action": Actions.ADD_MEDS
-                })
-            )
-        ]
+        [InlineKeyboardButton(
+            text=t(Actions.ADD_MEDS, user_id),
+            callback_data=json.dumps({
+                "action": Actions.ADD_MEDS
+            })
+        )]
     ]
 
     if meds:
@@ -70,15 +68,13 @@ def remove_meds_start(update: Update, context: CallbackContext):
     text = t(Actions.REMOVE_MEDS_SET_ID, user_id)
 
     keyboard = InlineKeyboardMarkup([
-        [
-            InlineKeyboardButton(
-                text=med.name,
-                callback_data=json.dumps({
-                    "action": Actions.REMOVE_MEDS_SET_ID,
-                    "_id": med._id
-                })
-            ) for med in meds
-        ]
+        [InlineKeyboardButton(
+            text=med.name,
+            callback_data=json.dumps({
+                "action": Actions.REMOVE_MEDS_SET_ID,
+                "_id": med._id
+            })
+        ) for med in meds]
     ])
 
     context.bot.send_message(text=text, chat_id=update.effective_chat.id, reply_markup=keyboard)

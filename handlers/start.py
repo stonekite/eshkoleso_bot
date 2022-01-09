@@ -6,5 +6,5 @@ from utils.l10n import t
 
 def start_handler(update: Update, context: CallbackContext):
     user_id = update.message.from_user.id
-    ensure_user_exists(user_id)
+    ensure_user_exists(user_id, update.effective_chat.id)
     update_menu(update, context, message=t("Welcome!", user_id))

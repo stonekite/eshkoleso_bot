@@ -28,4 +28,7 @@ def remove_last_message_after(function: Callable) -> Callable:
 
 
 def is_archived(entity: Union[dict, object]) -> bool:
-    return "is_archived" in entity
+    if not isinstance(entity, dict):
+        entity = entity.__dict__
+
+    return "is_archived" in entity and entity["is_archived"] == True
