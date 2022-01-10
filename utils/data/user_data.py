@@ -23,7 +23,7 @@ class UserData():
         interval_reminders = user_data.get("interval_reminders", [])
         self.interval_reminders: list[IntervalReminder] = \
             [IntervalReminder(reminder) for reminder in interval_reminders if not is_archived(reminder)]
-        self.last_interval_reminders_start_date: datetime = user_data.get("last_interval_reminder_start_date", None)
+        self.last_interval_reminders_start_date: datetime = user_data.get("last_interval_reminders_start_date", None)
         self.language: str = user_data.get("language", "ru")
         self.timezone: int = user_data.get("timezone", None)
         self.is_archived: bool = user_data.get("is_archived", False)

@@ -78,8 +78,9 @@ action_messages = dict({
     Actions.ADD_INTERVAL_REMINDER_SET_MEDS: "Please select the meds you want to be reminded about.",
     Actions.ADD_INTERVAL_REMINDER_SET_DOSAGE: "Please enter the dosage for this interval reminder - e.g., number of pills.",
     Actions.ADD_INTERVAL_REMINDER_SET_WITH_FOOD: "Please select whether you want to be reminded to eat 30 minutes before taking these meds.",
-    Actions.ADD_INTERVAL_REMINDER_SET_REPETITIONS: "Please select the number of times you want to be reminded in a day.",
-    Actions.ADD_INTERVAL_REMINDER_SET_INTERVAL: "Please select the amount of hours between each reminder.",
+    Actions.ADD_INTERVAL_REMINDER_SET_REPETITIONS: "Please select the number of times you take these meds in a day (you won't be \
+reminded the first time).",
+    Actions.ADD_INTERVAL_REMINDER_SET_INTERVAL: "Please select the amount of hours between each time you take these meds.",
     Actions.REMOVE_INTERVAL_REMINDER: "❌ Remove reminder",
     Actions.REMOVE_INTERVAL_REMINDER_SET_ID: "Please select the reminder you want to remove.",
     Actions.ADD_INTERVAL_REMINDER_RESPONSE: "➕ Add answer",

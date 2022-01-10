@@ -10,6 +10,8 @@ class Med():
             med = {}
         elif isinstance(med, ObjectId):
             med = get_med(med).__dict__
+        elif isinstance(med, Med):
+            med = med.__dict__
         
 
         self._id: ObjectId = med.get("_id", None)

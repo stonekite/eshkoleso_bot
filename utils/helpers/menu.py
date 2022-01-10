@@ -1,4 +1,5 @@
 from typing import Union
+from datetime import datetime
 from telegram import Update, ReplyKeyboardMarkup, KeyboardButton, ForceReply
 from telegram.ext import CallbackContext
 from utils.data.user_data import get_user_data
@@ -25,7 +26,8 @@ def get_menu(user_id: int, action: Actions=None) -> ReplyKeyboardMarkup:
         return ReplyKeyboardMarkup(keyboard=keyboard)
 
     if data.interval_reminders and \
-        (not data.last_interval_reminders_start_date or data.last_interval_reminders_start_date < date.today()):
+        (not data.last_interval_reminders_start_date or \
+            data.last_interval_reminders_start_date < datetime.utcnow().replace(hour=0, minute=0, second=0, microsecond=0)):
         add_row(Actions.START_INTERVAL_REMINDERS)
 
     add_row(Actions.SHOW_MEDS)
